@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schäfer Soluções para o Agronegócio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="cabecalho">
+        <div class="logo-area">
+            <a href="#inicio">
+                <img src="logo.png" alt="Logo Schäfer" class="logo">
+            </a>
+        </div>
+        
+        <nav class="menu" id="menu">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#servicos-tecnicos">Soluções Técnicas</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <button class="menu-mobile" id="menu-btn">☰</button>
+    </header>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Soluções Estratégicas para o Agronegócio</h1>
+            <p>Otimização de armazenagem, secagem e processos agrícolas com consultoria técnica de alto nível.</p>
+            <a href="#contato" class="btn-primary">Fale com um Especialista</a>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2>Sobre a Schäfer</h2>
+            <div class="sobre-grid">
+                <div class="sobre-texto">
+                    <p>A Schäfer Soluções para o Agronegócio oferece suporte técnico e estratégico para produtores e empresas do setor agrícola.</p>
+                    <p>Atuamos com planejamento, otimização de processos e implementação de soluções eficientes em armazenagem, secagem e manejo de grãos.</p>
+                </div>
+                <div class="sobre-imagem">
+                    <img src="palestra.jpeg" alt="Palestra Schäfer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS GERAIS -->
+    <section id="servicos" class="section bg-light">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="servicos-grid">
+                <div class="card"><h3>Consultoria para o Agronegócio</h3><p>Análise e estratégias personalizadas.</p></div>
+                <div class="card"><h3>Projetos de Silos</h3><p>Dimensionamento e otimização de estruturas.</p></div>
+                <div class="card"><h3>Sistemas de Secagem de Grãos</h3><p>Soluções completas para secagem eficiente.</p></div>
+                <div class="card"><h3>Armazenagem de Grãos</h3><p>Gestão moderna com redução de perdas.</p></div>
+                <div class="card"><h3>Otimização de Processos</h3><p>Melhoria contínua e redução de custos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUÇÕES TÉCNICAS -->
+    <section id="servicos-tecnicos" class="section">
+        <div class="container">
+            <h2>Soluções Técnicas Especializadas</h2>
+            <p class="subtitulo">Ajustes operacionais e treinamentos práticos para maximizar sua eficiência.</p>
+            
+            <div class="servicos-destaque-grid">
+                <div class="card-destaque">
+                    <div class="card-icon">🌾</div>
+                    <h3>Ajustes em Secadores</h3>
+                    <p>Construção de <strong>Procedimentos Operacionais Padrão (POP)</strong> com depressão ajustada.</p>
+                </div>
+                <div class="card-destaque">
+                    <div class="card-icon">🔇</div>
+                    <h3>Redução de Ruído em Ventiladores</h3>
+                    <p>Instalação de atenuadores acústicos para maior conforto da equipe.</p>
+                </div>
+                <div class="card-destaque">
+                    <div class="card-icon">📋</div>
+                    <h3>Treinamento Operacional Personalizado</h3>
+                    <p>Adaptado à sua cultura, região e tipo de estrutura.</p>
+                </div>
+                <div class="card-destaque">
+                    <div class="card-icon">🧹</div>
+                    <h3>Ajustes em Máquinas de Limpeza</h3>
+                    <p>Qualquer marca • Maior produtividade e qualidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section bg-light">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            
+            <form action="https://formsubmit.co/evandroschafer@gmail.com" method="POST" id="contact-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Seu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="telefone" placeholder="Telefone / WhatsApp">
+                    </div>
+                    <div class="form-group full">
+                        <textarea name="mensagem" placeholder="Sua mensagem" rows="6" required></textarea>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_subject" value="Nova mensagem do site Schäfer!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_url" value="Schäfer Soluções">
+                <input type="text" name="_honey" style="display:none;" aria-hidden="true">
+
+                <button type="submit" class="btn-primary">Enviar Mensagem</button>
+            </form>
+
+            <!-- Mensagem de Sucesso (aparece depois do envio) -->
+            <div id="success-message" class="success-message" style="display: none; text-align: center; padding: 40px 20px; background: #f0f8f0; border-radius: 12px; margin-top: 30px;">
+                <i class="fas fa-check-circle" style="font-size: 3.8rem; color: #3b6f34;"></i>
+                <h3 style="color: #1f3a1f; margin: 15px 0 10px;">Mensagem enviada com sucesso!</h3>
+                <p style="color: #444;">Obrigado pelo contato!<br>Em breve entraremos em contato.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5555991861370" target="_blank" class="whatsapp-float" title="Falar no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="rodape">
+        <div class="contato">
+            <div class="contato-item">
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/5555991861370" target="_blank">(55) 99186-1370</a>
+            </div>
+            <div class="contato-item">
+                <h4>Email</h4>
+                <a href="mailto:evandroschafer@gmail.com">evandroschafer@gmail.com</a>
+            </div>
+            <div class="contato-item">
+                <h4>Instagram</h4>
+                <a href="https://www.instagram.com/schaferconsultorias" target="_blank">@schaferconsultorias</a>
+            </div>
+            <div class="contato-item">
+                <h4>LinkedIn</h4>
+                <a href="https://www.linkedin.com/in/evandro-sch%C3%A4fer-57763055/" target="_blank">Evandro Schäfer</a>
+            </div>
+        </div>
+        <p class="footer-copy">© 2026 Schäfer Soluções para o Agronegócio • Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
