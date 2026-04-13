@@ -546,3 +546,81 @@ footer {
     background: #2d5a27;
     transform: translateY(-2px);
 }
+
+.hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+}
+.hero-cred {
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    opacity: 0.75;
+    display: inline-block;
+}
+
+.servicos-grid .card h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.servicos-grid .card p {
+    text-align: center;
+    line-height: 1.6;
+}
+
+.servicos-destaque-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .servicos-destaque-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .servicos-destaque-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.footer-dev {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #aaa;
+  text-align: center;
+}
+
+.footer-dev a {
+  color: #b6d3c1; /* verde WhatsApp */
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* linha animada embaixo */
+.footer-dev a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: #94b09e;
+  transition: width 0.3s ease;
+}
+
+/* hover */
+.footer-dev a:hover {
+  color: #c1eed3;
+}
+
+.footer-dev a:hover::after {
+  width: 100%;
+}
