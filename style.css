@@ -183,6 +183,7 @@ h1, h2, h3, h4 {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-decoration: none;
 
   cursor: pointer;
 
@@ -793,9 +794,183 @@ footer {
   left: 50%;
   top: -6px;
   transform: translateX(-50%);
-  width: 12px; 
+  width: 12px;
   height: 12px;
   background: #3b6f34;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(59,111,52,0.4); 
+  box-shadow: 0 0 8px rgba(59,111,52,0.4);
 }
+
+/* Agenda */
+.agenda-section {
+    padding: 60px 20px;
+    background-color: #f4f1ea;
+    text-align: center;
+}
+
+.agenda-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.agenda-subtitulo {
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.agenda-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 35px 40px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: all 0.4s ease;
+}
+
+.agenda-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(59, 111, 52, 0.18);
+}
+
+.agenda-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #2f512ae3;
+    color: #fff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    min-width: 140px;
+    text-align: center;
+}
+
+.agenda-dia {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.agenda-mes {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-top: 6px;
+}
+
+.agenda-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.agenda-info h3 {
+    color: #2f512a;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.agenda-instrutor, .agenda-realizacao {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.badge-unijui {
+    display: inline-block;
+    background: #c9a84c;
+    color: #1f3a1f;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.agenda-horarios {
+    display: flex;
+    gap: 25px;
+    margin: 15px 0 20px;
+    flex-wrap: wrap;
+    color: #444;
+}
+
+.agenda-horarios i {
+    color: #4a8c42;
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    .agenda-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .agenda-info {
+        text-align: center;
+    }
+    .agenda-horarios {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Principais Clientes */
+.clientes-section {
+    padding: 60px 20px;
+    background-color: #d1ddd028;
+    text-align: center;
+}
+
+.clientes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.clientes-subtitulo {
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.clientes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.cliente-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cliente-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.cliente-card img {
+    width: 140px;
+    height: 70px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .clientes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cliente-card img[src*="agrofel"] { transform: scale(2.4); }
+.cliente-card img[src*="caul"]    { transform: scale(1.4); }
+.cliente-card img[src*="coagril"] { transform: scale(2); }
+.cliente-card img[src*="cotripal"]{ transform: scale(1.25); }
+.cliente-card img[src*="coopac"]  { transform: scale(1.5); }
+.cliente-card img[src*="cotrisul"]{ transform: scale(1.5); }
