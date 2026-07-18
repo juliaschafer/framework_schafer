@@ -23,6 +23,101 @@
     <link rel="apple-touch-icon" href="/schafer_mini.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ============================================================
+         SIMULAÇÕES — estilos do item de menu (adição isolada)
+         Fica depois do style.css para sobrepor corretamente.
+         ============================================================ -->
+    <style>
+        .sim-dropdown { position: relative; display: inline-block; }
+
+        .sim-toggle {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            line-height: inherit;
+            white-space: nowrap;
+        }
+        .sim-caret { font-size: .7em; transition: transform .2s ease; }
+        .sim-dropdown.is-open .sim-caret { transform: rotate(180deg); }
+
+        .sim-menu {
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            min-width: 330px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, .16);
+            padding: .5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .18s ease, transform .18s ease, visibility .18s;
+            z-index: 1200;
+        }
+        .sim-dropdown.is-open .sim-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Especificidade alta para vencer as regras de ".menu a" do style.css */
+        .menu .sim-menu a,
+        .sim-menu a {
+            display: flex;
+            gap: .7rem;
+            align-items: flex-start;
+            padding: .7rem .8rem;
+            margin: 0;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1f3a1f;
+            font-size: .92rem;
+            font-weight: 400;
+            text-align: left;
+            line-height: 1.35;
+            transition: background .15s ease;
+        }
+        .menu .sim-menu a:hover,
+        .sim-menu a:hover {
+            background: rgba(59, 111, 52, .09);
+            color: #3b6f34;
+        }
+
+        .sim-menu strong { display: block; font-size: .92rem; font-weight: 600; }
+        .sim-menu small  { display: block; font-size: .78rem; opacity: .65; margin-top: .2rem; font-weight: 400; }
+        .sim-ico { font-size: 1.1rem; line-height: 1.35; flex-shrink: 0; }
+
+        /* --- Mobile: vira acordeão dentro do menu ☰ --- */
+        @media (max-width: 900px) {
+            .sim-dropdown { display: block; width: 100%; }
+            .sim-toggle   { width: 100%; justify-content: center; }
+
+            .sim-menu {
+                position: static;
+                transform: none;
+                min-width: 0;
+                width: 100%;
+                box-shadow: none;
+                background: rgba(59, 111, 52, .07);
+                margin-top: .5rem;
+                padding: .25rem;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+            }
+            .sim-dropdown.is-open .sim-menu { display: block; transform: none; }
+            .sim-menu small { display: none; }
+        }
+    </style>
 </head>
 
 <body>
@@ -39,6 +134,38 @@
             <a href="#sobre">Sobre</a>
             <a href="#servicos">Serviços</a>
             <a href="#servicos-tecnicos">Soluções Técnicas</a>
+
+            <!-- ===== SIMULAÇÕES (novo) ===== -->
+            <div class="sim-dropdown" id="sim-dropdown">
+                <button type="button" class="sim-toggle" id="sim-toggle" aria-expanded="false" aria-haspopup="true">
+                    Simulações
+                    <span class="sim-caret" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="sim-menu" role="menu">
+                    <a role="menuitem"
+                       href="https://juliaschafer.github.io/simuladorSchafer/"
+                       target="_blank" rel="noopener noreferrer">
+                        <span class="sim-ico" aria-hidden="true">🌾</span>
+                        <span>
+                            <strong>Simulador de Perdas na Armazenagem</strong>
+                            <small>Estime perdas de matéria seca e o impacto financeiro</small>
+                        </span>
+                    </a>
+
+                    <a role="menuitem"
+                       href="https://juliaschafer.github.io/simuladorInsetorSchafer/"
+                       target="_blank" rel="noopener noreferrer">
+                        <span class="sim-ico" aria-hidden="true">🪲</span>
+                        <span>
+                            <strong>Simulador de Infestação em Grãos Armazenados</strong>
+                            <small>Projete o crescimento populacional de insetos</small>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <!-- ===== /SIMULAÇÕES ===== -->
+
             <a href="#agenda">Agenda</a>
             <a href="#contato">Contato</a>
         </nav>
@@ -282,5 +409,58 @@
 </footer>
 
     <script src="script.js"></script>
+
+    <!-- ============================================================
+         SIMULAÇÕES — comportamento do dropdown (adição isolada)
+         Roda depois do script.js, sem alterar nada dele.
+         ============================================================ -->
+    <script>
+    (function () {
+        var drop = document.getElementById('sim-dropdown');
+        var btn = document.getElementById('sim-toggle');
+        var menuBtn = document.getElementById('menu-btn');
+        if (!drop || !btn) return;
+
+        // Detecta o modo mobile pela visibilidade real do botão ☰,
+        // assim funciona qualquer que seja o breakpoint do style.css.
+        function isMobile() {
+            return menuBtn && getComputedStyle(menuBtn).display !== 'none';
+        }
+
+        function setOpen(open) {
+            drop.classList.toggle('is-open', open);
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            setOpen(!drop.classList.contains('is-open'));
+        });
+
+        // Desktop: abre ao passar o mouse
+        drop.addEventListener('mouseenter', function () {
+            if (!isMobile()) setOpen(true);
+        });
+        drop.addEventListener('mouseleave', function () {
+            if (!isMobile()) setOpen(false);
+        });
+
+        // Fecha ao clicar fora
+        document.addEventListener('click', function (e) {
+            if (!drop.contains(e.target)) setOpen(false);
+        });
+
+        // Fecha ao escolher um simulador
+        drop.querySelectorAll('.sim-menu a').forEach(function (a) {
+            a.addEventListener('click', function () { setOpen(false); });
+        });
+
+        // Esc fecha
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') setOpen(false);
+        });
+    })();
+    </script>
 </body>
 </html>
