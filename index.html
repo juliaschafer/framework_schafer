@@ -32,8 +32,11 @@
         .sim-dropdown { position: relative; display: inline-block; }
 
         .sim-toggle {
-            font: inherit;
-            color: inherit;
+            /* mesma tipografia dos demais links do menu (.menu a) */
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f3a1f;
             background: none;
             border: 0;
             padding: 0;
@@ -41,12 +44,17 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: .35rem;
+            gap: .3rem;
             line-height: inherit;
             white-space: nowrap;
+            transition: all 0.3s ease;
         }
-        .sim-caret { font-size: .7em; transition: transform .2s ease; }
-        .sim-dropdown.is-open .sim-caret { transform: rotate(180deg); }
+        .sim-toggle:hover,
+        .sim-toggle:focus-visible,
+        .sim-dropdown.is-open .sim-toggle { color: #3b6f34; outline: none; }
+        .sim-caret { font-size: .62em; line-height: 1; transform: translateY(1px);
+                     transition: transform .25s ease; }
+        .sim-dropdown.is-open .sim-caret { transform: translateY(1px) rotate(180deg); }
 
         .sim-menu {
             position: absolute;
@@ -97,7 +105,7 @@
         .sim-ico { font-size: 1.1rem; line-height: 1.35; flex-shrink: 0; }
 
         /* --- Mobile: vira acordeão dentro do menu ☰ --- */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .sim-dropdown { display: block; width: 100%; }
             .sim-toggle   { width: 100%; justify-content: center; }
 
@@ -168,7 +176,7 @@
                        target="_blank" rel="noopener noreferrer">
                         <span class="sim-ico" aria-hidden="true">💧</span>
                         <span>
-                            <strong>Simulador de Equilíbrio Higroscópico<strong>
+                            <strong>Simulador de Equilíbrio Higroscópico</strong>
                             <small>Projete a umidade em que o grão vai estacionar</small>
                         </span>
                     </a>
@@ -263,6 +271,7 @@
                 <div class="card-icon">📊</div>
                 <h3>Cálculo de Aeração</h3>
                 <p>Dimensionamento e ajuste de sistemas de aeração em silos e armazéns, visando conservação da qualidade e redução de perdas.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -330,44 +339,6 @@
     </div>
 </section>
 
-    <!-- CONTATO -->
-    <section id="contato" class="section bg-light">
-        <div class="container">
-            <h2>Entre em Contato</h2>
-            
-            <form action="https://formsubmit.co/evandroschafer@gmail.com" method="POST" id="contact-form"   target="_blank">
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <input id = "nomeform" type="text" name="nome" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <input id = "emailform" type="email" name="email" placeholder="Seu email" required>
-                    </div>
-                    <div class="form-group">
-                        <input id = "telefoneform" type="tel" name="telefone" placeholder="Telefone / WhatsApp">
-                    </div>
-                    <div class="form-group full">
-                        <textarea id = "mensagemform" name="mensagem" placeholder="Sua mensagem" rows="6" required></textarea>
-                    </div>
-                </div>
-
-                <input type="hidden" name="_subject" value="Nova mensagem do site Schäfer!">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_url" value="Schäfer Soluções">
-                <input type="text" name="_honey" style="display:none;" aria-hidden="true">
-
-                <button type="submit" class="btn-msg">Enviar Mensagem</button>
-            </form>
-
-            <!-- Mensagem de Sucesso (aparece depois do envio) -->
-            <div id="success-message" class="success-message" style="display: none; text-align: center; padding: 40px 20px; background: #f0f8f0; border-radius: 12px; margin-top: 30px;">
-                <i class="fas fa-check-circle" style="font-size: 3.8rem; color: #3b6f34;"></i>
-                <h3 style="color: #1f3a1f; margin: 15px 0 10px;">Mensagem enviada com sucesso!</h3>
-                <p style="color: #444;">Obrigado pelo contato!<br>Em breve entraremos em contato.</p>
-            </div>
-        </div>
-    </section>
 
     <!-- BOTÃO WHATSAPP FLUTUANTE -->
     <a href="https://wa.me/5555991861370" target="_blank" class="whatsapp-float" title="Falar no WhatsApp">
@@ -375,7 +346,7 @@
     </a>
 
     <!-- FOOTER -->
-<footer class="rodape">
+<footer class="rodape" id="contato">
     <div class="contato">
         <div class="contato-item">
             <h4>WhatsApp</h4>
