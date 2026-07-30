@@ -13,9 +13,6 @@
 #servicos-tecnicos {
   background:#f8f9f7 ; 
 }
-#contato {
-  background: rgb(228, 231, 220);
-}
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
@@ -78,7 +75,7 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 30px rgba(26,46,26,0.08);
 }
 
-.logo { height: 65px; width: auto; transition: opacity 0.3s; }
+.logo { height: 62px; width: auto; transition: opacity 0.3s; }
 .logo:hover { opacity: 0.8; }
 
 .menu {
