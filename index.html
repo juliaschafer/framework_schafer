@@ -14,6 +14,10 @@
     <meta property="og:url" content="https://schafersolucoes.com.br/">
     <meta property="og:image" content="https://schafersolucoes.com.br/logo.png">
     <link rel="canonical" href="https://schafersolucoes.com.br/">
+    <script>document.documentElement.className += ' js';</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="style.css">
     <meta name="geo.region" content="BR-RS">
     <meta name="geo.placename" content="Rio Grande do Sul">
@@ -21,114 +25,33 @@
     <link rel="icon" sizes="32x32" href="/schafer_mini.png">
     <link rel="icon" sizes="192x192" href="/schafer_mini.png">
     <link rel="apple-touch-icon" href="/schafer_mini.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="theme-color" content="#0d1a0d">
 
-    <!-- ============================================================
-         SIMULAÇÕES — estilos do item de menu (adição isolada)
-         Fica depois do style.css para sobrepor corretamente.
-         ============================================================ -->
-    <style>
-        .sim-dropdown { position: relative; display: inline-block; }
-
-        .sim-toggle {
-            /* mesma tipografia dos demais links do menu (.menu a) */
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1f3a1f;
-            background: none;
-            border: 0;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            line-height: inherit;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-        .sim-toggle:hover,
-        .sim-toggle:focus-visible,
-        .sim-dropdown.is-open .sim-toggle { color: #3b6f34; outline: none; }
-        .sim-caret { font-size: .62em; line-height: 1; transform: translateY(1px);
-                     transition: transform .25s ease; }
-        .sim-dropdown.is-open .sim-caret { transform: translateY(1px) rotate(180deg); }
-
-        .sim-menu {
-            position: absolute;
-            top: calc(100% + 14px);
-            left: 50%;
-            transform: translateX(-50%) translateY(-6px);
-            min-width: 330px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 14px 36px rgba(0, 0, 0, .16);
-            padding: .5rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity .18s ease, transform .18s ease, visibility .18s;
-            z-index: 1200;
-        }
-        .sim-dropdown.is-open .sim-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Especificidade alta para vencer as regras de ".menu a" do style.css */
-        .menu .sim-menu a,
-        .sim-menu a {
-            display: flex;
-            gap: .7rem;
-            align-items: flex-start;
-            padding: .7rem .8rem;
-            margin: 0;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #1f3a1f;
-            font-size: .92rem;
-            font-weight: 400;
-            text-align: left;
-            line-height: 1.35;
-            transition: background .15s ease;
-        }
-        .menu .sim-menu a:hover,
-        .sim-menu a:hover {
-            background: rgba(59, 111, 52, .09);
-            color: #3b6f34;
-        }
-
-        .sim-menu strong { display: block; font-size: .92rem; font-weight: 600; }
-        .sim-menu small  { display: block; font-size: .78rem; opacity: .65; margin-top: .2rem; font-weight: 400; }
-        .sim-ico { font-size: 1.1rem; line-height: 1.35; flex-shrink: 0; }
-
-        /* --- Mobile: vira acordeão dentro do menu ☰ --- */
-        @media (max-width: 768px) {
-            .sim-dropdown { display: block; width: 100%; }
-            .sim-toggle   { width: 100%; justify-content: center; }
-
-            .sim-menu {
-                position: static;
-                transform: none;
-                min-width: 0;
-                width: 100%;
-                box-shadow: none;
-                background: rgba(59, 111, 52, .07);
-                margin-top: .5rem;
-                padding: .25rem;
-                display: none;
-                opacity: 1;
-                visibility: visible;
-            }
-            .sim-dropdown.is-open .sim-menu { display: block; transform: none; }
-            .sim-menu small { display: none; }
-        }
-    </style>
 </head>
 
 <body>
+    <!-- ============================================================
+         ÍCONES — sprite SVG (line icons, sem emojis)
+         Traço fino, currentColor, herda tamanho/cor do contexto.
+         ============================================================ -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false"><defs>
+        <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+        <symbol id="i-trending-down" viewBox="0 0 24 24"><path d="M22 17 13.5 8.5 8.5 13.5 2 7"/><path d="M16 17h6v-6"/></symbol>
+        <symbol id="i-bug" viewBox="0 0 24 24"><path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3 3 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6Z"/><path d="M12 20v-9"/><path d="M6.5 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M21 5c0 2.1-1.6 3.8-3.5 4"/><path d="M22 13h-4"/><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"/></symbol>
+        <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7Z"/></symbol>
+        <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></symbol>
+        <symbol id="i-arrow-up-down" viewBox="0 0 24 24"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-wind" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+        <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M12 10V2"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4 4-4-4"/><path d="M16 18a4 4 0 0 0-8 0"/></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+        <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></symbol>
+    </defs></svg>
+
     <!-- HEADER -->
     <header class="cabecalho">
         <div class="logo-area">
@@ -147,14 +70,14 @@
             <div class="sim-dropdown" id="sim-dropdown">
                 <button type="button" class="sim-toggle" id="sim-toggle" aria-expanded="false" aria-haspopup="true">
                     Simulações
-                    <span class="sim-caret" aria-hidden="true">▾</span>
+                    <svg class="ico sim-caret" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
                 </button>
 
                 <div class="sim-menu" role="menu">
                     <a role="menuitem"
                        href="https://juliaschafer.github.io/simuladorSchafer/"
                        target="_blank" rel="noopener noreferrer">
-                        <span class="sim-ico" aria-hidden="true">🌾</span>
+                        <svg class="ico sim-ico" aria-hidden="true"><use href="#i-trending-down"></use></svg>
                         <span>
                             <strong>Simulador de Perdas na Armazenagem</strong>
                             <small>Estime perdas de matéria seca e o impacto financeiro</small>
@@ -164,7 +87,7 @@
                     <a role="menuitem"
                        href="https://juliaschafer.github.io/simuladorInsetorSchafer/"
                        target="_blank" rel="noopener noreferrer">
-                        <span class="sim-ico" aria-hidden="true">🪲</span>
+                        <svg class="ico sim-ico" aria-hidden="true"><use href="#i-bug"></use></svg>
                         <span>
                             <strong>Simulador de Infestação em Grãos Armazenados</strong>
                             <small>Projete o crescimento populacional de insetos</small>
@@ -174,7 +97,7 @@
                     <a role="menuitem"
                        href="https://juliaschafer.github.io/Simuladorequilibrioschafer/"
                        target="_blank" rel="noopener noreferrer">
-                        <span class="sim-ico" aria-hidden="true">💧</span>
+                        <svg class="ico sim-ico" aria-hidden="true"><use href="#i-droplet"></use></svg>
                         <span>
                             <strong>Simulador de Equilíbrio Higroscópico</strong>
                             <small>Projete a umidade em que o grão vai estacionar</small>
@@ -188,7 +111,10 @@
             <a href="#contato">Contato</a>
         </nav>
 
-        <button class="menu-mobile" id="menu-btn">☰</button>
+        <button class="menu-mobile" id="menu-btn" aria-label="Abrir menu" aria-controls="menu">
+            <svg class="ico ico-open" aria-hidden="true"><use href="#i-menu"></use></svg>
+            <svg class="ico ico-close" aria-hidden="true"><use href="#i-x"></use></svg>
+        </button>
     </header>
 
     <!-- HERO -->
@@ -197,20 +123,39 @@
             <p class="hero-cred">
                 Credenciado pelo SESCOOP como palestrante, consultor e professor
             </p>
-            <h1>Soluções Estratégicas para o Agronegócio</h1>
-            
+
+            <h1>
+                <span class="hero-linha"><span>Soluções <em>Estratégicas</em></span></span>
+                <span class="hero-linha"><span>para o Agronegócio</span></span>
+            </h1>
+
             <p class="hero-desc">
                 Otimização de armazenagem, secagem e processos agrícolas com consultoria técnica de alto nível.
             </p>
-            <a href="#contato" class="btn-primary">Fale com um Especialista</a>
+
+            <div class="hero-cta-group">
+                <a href="#contato" class="btn-primary">
+                    Fale com um Especialista
+                    <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+                </a>
+                <a href="#servicos" class="btn-ghost">Conheça os serviços</a>
+            </div>
         </div>
+
+        <a href="#sobre" class="hero-scroll" aria-label="Rolar para a próxima seção">
+            <span>Role</span>
+            <svg class="ico" aria-hidden="true"><use href="#i-arrow-down"></use></svg>
+        </a>
     </section>
 
 
     <!-- SOBRE -->
     <section id="sobre" class="section">
         <div class="container">
-            <h2>Sobre a Schäfer</h2>
+            <div class="section-head">
+                <p class="eyebrow">Quem somos</p>
+                <h2>Sobre a Schäfer</h2>
+            </div>
             <div class="sobre-grid">
                 <div class="sobre-texto">
                     <p>A Schäfer Soluções para o Agronegócio oferece suporte técnico e estratégico para produtores e empresas do setor agrícola.</p>
@@ -226,7 +171,11 @@
     <!-- SERVIÇOS GERAIS -->
     <section id="servicos" class="section bg-light">
         <div class="container">
-            <h2>Nossos Serviços</h2>
+            <div class="section-head">
+                <p class="eyebrow">O que fazemos</p>
+                <h2>Nossos Serviços</h2>
+                <p class="subtitulo">Consultoria de ponta a ponta: do diagnóstico da planta industrial à capacitação da equipe.</p>
+            </div>
             <div class="servicos-grid">
                 <div class="card"><h3>Consultoria para o Agronegócio</h3><p>Estudo técnico e estratégico personalizado das plantas industriais, com identificação de gargalos e oportunidades de melhoria, visando maior produtividade, qualidade, eficiência operacional e redução de custos.</p></div>
                 <div class="card"><h3>Projetos de Silos</h3><p>Dimensionamento técnico e otimização de estruturas de armazenagem. Desenvolvimento de soluções personalizadas que garantem maior eficiência, durabilidade da estrutura e redução de perdas durante o armazenamento.</p></div>
@@ -245,30 +194,33 @@
     <!-- SOLUÇÕES TÉCNICAS -->
     <section id="servicos-tecnicos" class="section">
         <div class="container">
-            <h2>Soluções Técnicas Especializadas</h2>
-            <p class="subtitulo">Ajustes operacionais e treinamentos práticos para maximizar sua eficiência.</p>
+            <div class="section-head">
+                <p class="eyebrow">Especialidades</p>
+                <h2>Soluções Técnicas Especializadas</h2>
+                <p class="subtitulo">Ajustes operacionais e treinamentos práticos para maximizar sua eficiência.</p>
+            </div>
         
             <div class="servicos-destaque-grid">
                 <div class="card-destaque">
-                <div class="card-icon">🌾</div>
+                <div class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-flame"></use></svg></div>
                 <h3>Ajustes em Secadores</h3>
                 <p>Construção de <strong>Procedimentos Operacionais Padrão (POP)</strong> com depressão ajustada para diferentes culturas: soja, milho, trigo, canola, cevada, sorgo, arroz, girassol e feijão.</p>
             </div>
 
             <div class="card-destaque">
-                <div class="card-icon">⚙️</div>
+                <div class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-arrow-up-down"></use></svg></div>
                 <h3>Fluxo de Elevadores e Limpeza</h3>
                 <p>Análise e ajuste do fluxo em elevadores e máquinas de limpeza, com foco na eliminação de gargalos operacionais e aumento da eficiência.</p>
             </div>
 
             <div class="card-destaque">
-                <div class="card-icon">📋</div>
+                <div class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg></div>
                 <h3>Treinamento Operacional Personalizado</h3>
                 <p>Adaptado à sua cultura, região e tipo de estrutura, garantindo padronização e melhor desempenho da equipe.</p>
             </div>
 
             <div class="card-destaque">
-                <div class="card-icon">📊</div>
+                <div class="card-icon"><svg class="ico" aria-hidden="true"><use href="#i-wind"></use></svg></div>
                 <h3>Cálculo de Aeração</h3>
                 <p>Dimensionamento e ajuste de sistemas de aeração em silos e armazéns, visando conservação da qualidade e redução de perdas.</p>
                 </div>
@@ -279,70 +231,65 @@
     <!-- AGENDA -->
     <section id="agenda" class="agenda-section">
         <div class="agenda-container">
-            <h2>Agenda</h2>
-            <p class="agenda-subtitulo">Próximo curso de qualificação profissional ministrado por Evandro Schäfer.</p>
+            <div class="section-head">
+                <p class="eyebrow">Próximos eventos</p>
+                <h2>Agenda</h2>
+                <p class="agenda-subtitulo">Cursos e qualificações profissionais ministrados por Evandro Schäfer.</p>
+            </div>
 
-            <div class="agenda-card">
-                <div class="agenda-data">
-                    <span class="agenda-dia">15 - 16</span>
-                    <span class="agenda-mes">Setembro / 2026</span>
-                </div>
-                <div class="agenda-info">
-                    <h3>Operação de Unidades de Beneficiamento e Armazenagem de Grãos</h3>
-                    <p class="agenda-instrutor">Ministrado por <strong>Evandro Schäfer</strong></p>
-                    <p class="agenda-realizacao">Realização: <span class="badge-unijui">UNIJUÍ</span></p>
-
-                    <div class="agenda-horarios">
-                        <span><i class="fas fa-sun"></i> Manhã: 8h30min às 12h</span>
-                        <span><i class="fas fa-cloud-sun"></i> Tarde: 13h30min às 17h30min</span>
+            <ul class="agenda-lista">
+                <li class="agenda-card">
+                    <div class="agenda-data">
+                        <span class="agenda-dia">15&#8202;–&#8202;16</span>
+                        <span class="agenda-mes">Set 2026</span>
                     </div>
 
-                    <a href="https://www.unijui.edu.br/estude/educacao-continuada/qualificacao-profissional/operaco-de-unidades-de-beneficiamento-e-armazenagem-de-gros-721" target="_blank" rel="noopener noreferrer" class="btn-msg">
-                        Saiba mais e inscreva-se
+                    <div class="agenda-info">
+                        <h3>Operação de Unidades de Beneficiamento e Armazenagem de Grãos</h3>
+
+                        <p class="agenda-meta">
+                            <span class="agenda-instrutor">Evandro Schäfer</span>
+                            <span class="agenda-realizacao">Realização <span class="badge-unijui">UNIJUÍ</span></span>
+                        </p>
+
+                        <div class="agenda-horarios">
+                            <span><svg class="ico" aria-hidden="true"><use href="#i-sun"></use></svg> Manhã 8h30 – 12h</span>
+                            <span><svg class="ico" aria-hidden="true"><use href="#i-sunset"></use></svg> Tarde 13h30 – 17h30</span>
+                        </div>
+                    </div>
+
+                    <a href="https://www.unijui.edu.br/estude/educacao-continuada/qualificacao-profissional/operaco-de-unidades-de-beneficiamento-e-armazenagem-de-gros-721" target="_blank" rel="noopener noreferrer" class="btn-msg agenda-cta">
+                        Inscreva-se
                     </a>
-                </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section id="clientes" class="clientes-section">
+        <div class="clientes-container">
+            <div class="section-head">
+                <p class="eyebrow">Confiança</p>
+                <h2>Alguns Clientes</h2>
+                <p class="clientes-subtitulo">Cooperativas e empresas que já contaram com a consultoria da Schäfer.</p>
+            </div>
+
+            <div class="clientes-grid">
+                <div class="cliente-card"><img src="./logos/cotripal.png" alt="Cotripal" loading="lazy"></div>
+                <div class="cliente-card"><img src="./logos/cotrisul.png" alt="Cotrisul" loading="lazy"></div>
+                <div class="cliente-card"><img src="./logos/agrofel.png" alt="Agrofel" loading="lazy"></div>
+                <div class="cliente-card"><img src="./logos/coagril.png" alt="Coagril" loading="lazy"></div>
+                <div class="cliente-card"><img src="./logos/caul.png" alt="Caul" loading="lazy"></div>
+                <div class="cliente-card"><img src="./logos/coopacc.png" alt="Coopacc" loading="lazy"></div>
             </div>
         </div>
     </section>
 
-    <!--Clientes -->
-<section id="clientes" class="clientes-section">
-    <div class="clientes-container">
-        <h2>Alguns Clientes</h2>
-        <p class="clientes-subtitulo">Confiança e reconhecimento no setor agrícola.</p>
-
-        <div class="clientes-grid">
-            <div class="cliente-card">
-                <img src="./cotripal.png" alt="Cotipal">
-            </div>
-
-            <div class="cliente-card">
-                <img src="./cotrisul.png" alt="Cotrisul">
-            </div>
-
-            <div class="cliente-card">
-                <img src="./agrofel.png" alt="Agrofel">
-            </div>
-
-            <div class="cliente-card">
-                <img src="./coagril.png" alt="Coagril">
-            </div>
-
-            <div class="cliente-card">
-                <img src="./caul.png" alt="Caul">
-            </div>
-
-            <div class="cliente-card">
-                <img src="./coopacc.png" alt="Coopac">
-            </div>
-        </div>
-    </div>
-</section>
-
 
     <!-- BOTÃO WHATSAPP FLUTUANTE -->
     <a href="https://wa.me/5555991861370" target="_blank" class="whatsapp-float" title="Falar no WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <svg class="ico ico-solid" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
     </a>
 
     <!-- FOOTER -->
@@ -402,7 +349,7 @@
         var menuBtn = document.getElementById('menu-btn');
         if (!drop || !btn) return;
 
-        // Detecta o modo mobile pela visibilidade real do botão ☰,
+        // Detecta o modo mobile pela visibilidade real do botão hambúrguer,
         // assim funciona qualquer que seja o breakpoint do style.css.
         function isMobile() {
             return menuBtn && getComputedStyle(menuBtn).display !== 'none';

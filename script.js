@@ -102,6 +102,61 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.card, .card-destaque, .sobre-grid').forEach(el => {
+document.querySelectorAll('.card, .card-destaque, .sobre-grid, .agenda-card, .clientes-grid').forEach(el => {
     observer.observe(el);
 });
+
+// ==================== PARALLAX DO HERO ====================
+// O conteúdo sobe e desaparece mais devagar que a página, dando profundidade.
+// As variáveis ficam no .hero e são herdadas pelo conteúdo e pelo indicador.
+(function () {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let ticking = false;
+
+    function update() {
+        const y = window.scrollY;
+        const limite = hero.offsetHeight;
+
+        if (y <= limite) {
+            hero.style.setProperty('--py', (y * 0.16).toFixed(1) + 'px');
+            hero.style.setProperty('--pf', Math.max(0, 1 - y / (limite * 0.62)).toFixed(3));
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    update();
+})();
+
+// ==================== HEADER AO ROLAR ====================
+// Densifica o fundo translúcido do cabeçalho depois dos primeiros pixels.
+(function () {
+    const header = document.querySelector('.cabecalho');
+    if (!header) return;
+
+    let ticking = false;
+
+    function update() {
+        header.classList.toggle('scrolled', window.scrollY > 12);
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    update();
+})();
