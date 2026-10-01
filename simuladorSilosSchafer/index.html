@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Ventilação de Silos | Schafer</title>
+<meta name="description" content="Dimensione vazão de ar, pressão estática e potência do ventilador para silos de Milho, Arroz, Soja, Sorgo, Trigo e Canola.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<link rel="icon" href="../schafer_mini.png" type="image/png">
+<style>
+:root{--deep:#0d1a0d;--green:#2f512a;--mid:#3b6f34;--bright:#4a8c42;--mint:#b8d8b3;--gold:#c9a84c;
+--bg:#faf9f6;--surface:#fff;--tint:#f2f4ef;--ink:#16211a;--body:#4a554a;--muted:#78826f;--line:#dfe4d9;--warn:#8a5a00;--warnbg:#fff6df}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font:16px/1.55 'DM Sans',system-ui,sans-serif}
+header{background:var(--deep);color:#f4f1ea;padding:28px 16px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+header a{color:var(--mint);font-size:14px;text-decoration:none}
+h1{font:600 clamp(26px,4vw,38px)/1.15 'Cormorant Garamond',serif;margin:8px 0 4px}
+header p{margin:0;opacity:.8}
+main{padding:24px 0 56px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+h2{font:600 22px 'Cormorant Garamond',serif;color:var(--green);margin:0 0 14px}
+label{display:block;font-size:13.5px;margin:12px 0 4px;color:var(--ink)}
+input,select{width:100%;font:500 15px 'DM Mono',monospace;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--bright);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.key input{border-color:var(--gold);background:#fffbee}
+.res{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.res:last-child{border:0}.res b{font:500 15px 'DM Mono',monospace;color:var(--ink);white-space:nowrap}
+.res.hl b{color:var(--mid);font-size:17px}
+.warn{background:var(--warnbg);border:1px solid var(--gold);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:14px}
+.hide{display:none}
+.full{margin-top:20px}
+table{width:100%;border-collapse:collapse;font:14px 'DM Mono',monospace}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line)}
+th{font:600 12.5px 'DM Sans',sans-serif;color:var(--green);background:var(--tint)}
+.scroll{overflow-x:auto}
+.charts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+@media(max-width:900px){.charts{grid-template-columns:1fr}}
+.charts svg{width:100%;height:auto;display:block}
+.charts h3{font:600 14px 'DM Sans';margin:0 0 6px;color:var(--ink)}
+small.n{display:block;margin-top:16px;color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a href="../">← Schafer Soluções</a>
+  <h1>Simulador de Ventilação de Silos</h1>
+  <p>Vazão de ar, pressão estática e potência do ventilador por cultura</p>
+</div></header>
+
+<main class="wrap">
+  <div class="grid">
+    <section class="card" aria-labelledby="t-dados">
+      <h2 id="t-dados">Dados gerais do sistema</h2>
+      <label for="produto">Produto</label>
+      <select id="produto"></select>
+      <div class="row">
+        <div><label for="D">Diâmetro do silo (m)</label><input id="D" type="number" step="any" min="0.1" value="14.55"></div>
+        <div><label for="H">Altura do cilindro (m)</label><input id="H" type="number" step="any" min="0.1" value="18.39"></div>
+        <div><label for="repouso">Ângulo de repouso (graus)</label><input id="repouso" type="number" step="any" min="1" max="89"></div>
+        <div><label for="massa">Massa específica (kg/m³)</label><input id="massa" type="number" step="any" min="1"></div>
+      </div>
+      <div class="key"><label for="qEsp">Vazão específica para o silo cheio (m³/(min·t))</label>
+        <input id="qEsp" type="number" step="0.01" min="0.01" value="0.18"></div>
+      <div class="row">
+        <div><label for="eficiencia">Eficiência do sistema (%)</label><input id="eficiencia" type="number" step="any" min="1" max="100" value="60"></div>
+        <div><label for="fCompact">Coef. de compactação</label><input id="fCompact" type="number" step="any" min="0.1" value="1.5"></div>
+        <div><label for="fSeg">Fator de segurança</label><input id="fSeg" type="number" step="any" min="0.1" value="1.3"></div>
+      </div>
+      <div class="warn hide" id="aviso-canola"><b>Canola — constantes provisórias.</b> A massa específica e o ângulo de repouso são valores típicos; as constantes de Shedd (A e B) precisam ser conferidas com a ASAE D272.3 / Jayas et&nbsp;al. (1987) antes de qualquer dimensionamento.</div>
+    </section>
+
+    <section class="card" aria-labelledby="t-res" aria-live="polite">
+      <h2 id="t-res">Valores calculados</h2>
+      <div id="resumo"></div>
+    </section>
+  </div>
+
+  <section class="card full">
+    <h2>Variação com o enchimento do silo</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Enchimento (%)</th><th>Altura média (m)</th><th>Vazão (m³/min)</th><th>Vazão esp. (m³/(min·t))</th><th>Pressão (mm c.a.)</th></tr></thead>
+      <tbody id="tabela"></tbody>
+    </table></div>
+    <div class="charts" id="graficos"></div>
+    <small class="n">Modelo: perda de carga por metro ΔP/L = A·Q²/ln(1+B·Q) (Shedd). Cálculo idêntico ao da planilha “Resistência ao Fluxo de Ar”. Valores de referência para projeto preliminar.</small>
+  </section>
+</main>
+
+<script src="calculo.js"></script>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var P=SiloCalc.PRODUTOS, sel=$('produto');
+  Object.keys(P).forEach(function(k){var o=document.createElement('option');o.value=o.textContent=k;sel.appendChild(o)});
+  var f=function(v,d){return v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d})};
+  var ids=['D','H','repouso','massa','qEsp','eficiencia','fCompact','fSeg'];
+
+  function carregaProduto(){
+    var p=P[sel.value];
+    $('repouso').value=p.repouso; $('massa').value=p.massa;
+    $('aviso-canola').classList.toggle('hide',!p.provisorio);
+    calcula();
+  }
+  function lin(pts,xl,yl){
+    var W=300,H=190,m={l:44,r:10,t:10,b:34},xs=pts.map(function(p){return p[0]}),ys=pts.map(function(p){return p[1]});
+    var x0=Math.min.apply(0,xs),x1=Math.max.apply(0,xs),y0=0,y1=Math.max.apply(0,ys)*1.08||1;
+    var X=function(v){return m.l+(v-x0)/(x1-x0||1)*(W-m.l-m.r)},Y=function(v){return H-m.b-(v-y0)/(y1-y0)*(H-m.t-m.b)};
+    var d=pts.map(function(p,i){return(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)}).join('');
+    return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+yl+' x '+xl+'">'+
+      '<path d="M'+m.l+' '+m.t+'V'+(H-m.b)+'H'+(W-m.r)+'" fill="none" stroke="#bbb"/>'+
+      '<path d="'+d+'" fill="none" stroke="#3b6f34" stroke-width="2.2"/>'+
+      '<text x="'+m.l+'" y="'+(H-20)+'" font-size="10" fill="#78826f" dy="12">'+f(x0,0)+'</text>'+
+      '<text x="'+(W-m.r)+'" y="'+(H-20)+'" font-size="10" fill="#78826f" dy="12" text-anchor="end">'+f(x1,0)+' %</text>'+
+      '<text x="'+(m.l-4)+'" y="'+(m.t+8)+'" font-size="10" fill="#78826f" text-anchor="end">'+f(y1,y1<10?1:0)+'</text>'+
+      '<text x="'+(m.l-4)+'" y="'+(H-m.b)+'" font-size="10" fill="#78826f" text-anchor="end">0</text></svg>';
+  }
+  function calcula(){
+    var e={produto:sel.value};
+    for(var i=0;i<ids.length;i++){e[ids[i]]=parseFloat($(ids[i]).value);if(!(e[ids[i]]>0))return}
+    var r=SiloCalc.calcular(e);
+    var L=[['Área da base do silo (m²)',f(r.area,2)],['Altura do cone superior formado pelo produto (m)',f(r.hCone,2)],
+      ['Volume da parte cilíndrica (m³)',f(r.volCil,2)],['Volume do cone superior (m³)',f(r.volCone,2)],['Volume total do silo (m³)',f(r.volTotal,2)],
+      ['Capacidade do silo (t)',f(r.capacidade,2),1],['Vazão de ar para o silo cheio (m³/min)',f(r.vazao,2),1],
+      ['Vazão por unidade de área (m³/(min·m²))',f(r.vazaoArea,2)],['Pressão estática para o silo cheio (mm c.a.)',f(r.pressao,2),1],
+      ['Potência calculada do ventilador (cv)',f(r.potencia,2),1],['Potência comercial do ventilador (cv)',f(r.motor,2),1]];
+    $('resumo').innerHTML=L.map(function(l){return '<div class="res'+(l[2]?' hl':'')+'"><span>'+l[0]+'</span><b>'+l[1]+'</b></div>'}).join('');
+    $('tabela').innerHTML=r.tabela.map(function(t){return '<tr><td>'+f(t.pct,1)+'</td><td>'+f(t.altura,2)+'</td><td>'+f(t.vazao,1)+'</td><td>'+f(t.qEsp,3)+'</td><td>'+f(t.pressao,1)+'</td></tr>'}).join('');
+    var g=function(k){return r.tabela.map(function(t){return[t.pct,t[k]]})};
+    $('graficos').innerHTML=
+      '<div><h3>Vazão de ar (m³/min)</h3>'+lin(g('vazao'),'enchimento (%)','Vazão')+'</div>'+
+      '<div><h3>Vazão específica (m³/(min·t))</h3>'+lin(g('qEsp'),'enchimento (%)','Vazão específica')+'</div>'+
+      '<div><h3>Pressão estática (mm c.a.)</h3>'+lin(g('pressao'),'enchimento (%)','Pressão')+'</div>';
+  }
+  sel.addEventListener('change',carregaProduto);
+  ids.forEach(function(i){$(i).addEventListener('input',calcula)});
+  sel.value='Milho'; carregaProduto();
+})();
+</script>
+</body>
+</html>
